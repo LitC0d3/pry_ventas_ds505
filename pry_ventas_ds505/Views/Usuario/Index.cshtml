@@ -1,0 +1,61 @@
+﻿@model IEnumerable<pry_ventas_ds505.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1><i class="fas fa-users"></i> Listado de Usuarios</h1>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <a class="btn btn-success" asp-controller="Usuario" asp-action="Create"><i class="fas fa-user-plus"></i> Agregar Usuario</a>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        @if (Model.Any())
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(usr => usr.Nombres)</th>
+                        <th>@Html.DisplayNameFor(usr => usr.Apellidos)</th>
+                        <th>@Html.DisplayNameFor(usr => usr.Correo)</th>
+                        <th>@Html.DisplayNameFor(usr => usr.EsAdministrador)</th>
+                        <th>@Html.DisplayNameFor(usr => usr.Activo)</th>
+                        <th>@Html.DisplayNameFor(usr => usr.FechaRegistro)</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var usr in Model)
+                    {
+                        <tr>
+                            <td>@usr.Nombres</td>
+                            <td>@usr.Apellidos</td>
+                            <td>@usr.Correo</td>
+                            <td>@(usr.EsAdministrador ? "Sí" : "No")</td>
+                            <td>@(usr.Activo ? "Sí" : "No")</td>
+                            <td>@usr.FechaRegistro.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                            <td>
+                                <a asp-controller="Usuario" asp-action="Edit" asp-route-id="@usr.IdUsuario" class="btn btn-outline-warning btn-sm"><i class="fas fa-edit"></i> Editar</a>
+                                <a asp-controller="Usuario" asp-action="Delete" asp-route-id="@usr.IdUsuario" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i> Borrar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No Existen Registros</p>
+        }
+        <div class="text-lg-center">
+            <h2>Elaborado por Aldair Villegas</h2>
+        </div>
+    </div>
+</div>

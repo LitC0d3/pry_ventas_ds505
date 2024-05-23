@@ -8,8 +8,8 @@ namespace pry_ventas_ds505.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
-
-        public DbSet<Personal> Personal { get; set; }
-        public DbSet<Categoria> Categoria { get; set; }
+        public DbSet<Producto> Productos { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<Marca> Marcas { get; set; }
     }
 }

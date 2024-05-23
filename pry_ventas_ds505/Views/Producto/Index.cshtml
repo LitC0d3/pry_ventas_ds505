@@ -1,0 +1,72 @@
+﻿@model IEnumerable<pry_ventas_ds505.Models.Producto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1><i class="fas fa-boxes"></i> Listado de Productos</h1>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <a class="btn btn-success" asp-controller="Producto"
+               asp-action="Create"><i class="fas fa-box-plus"></i> Agregar Producto</a>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        @if (Model.Any())
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(prod => prod.IdProducto)</th>
+                        <th>@Html.DisplayNameFor(prod => prod.Nombre)</th>
+                        <th>@Html.DisplayNameFor(prod => prod.Descripcion)</th>
+                        <th>@Html.DisplayNameFor(prod => prod.IdMarca)</th>
+                        <th>@Html.DisplayNameFor(prod => prod.IdCategoria)</th>
+                        <th>@Html.DisplayNameFor(prod => prod.Precio)</th>
+                        <th>@Html.DisplayNameFor(prod => prod.Stock)</th>
+                        <th>@Html.DisplayNameFor(prod => prod.Activo)</th>
+                        <th>@Html.DisplayNameFor(prod => prod.FechaRegistro)</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var reg in Model)
+                    {
+                        <tr>
+                            <td>@reg.IdProducto</td>
+                            <td>@reg.Nombre</td>
+                            <td>@reg.Descripcion</td>
+                            <td>@reg.IdMarca</td>
+                            <td>@reg.IdCategoria</td>
+                            <td>@reg.Precio</td>
+                            <td>@reg.Stock</td>
+                            <td>@(reg.Activo ? "Sí" : "No")</td>
+                            <td>@reg.FechaRegistro</td>
+                            <td>
+                                <a asp-controller="Producto" asp-action="Edit"
+                                   asp-route-id="@reg.IdProducto"
+                                   class="btn btn-outline-warning btn-sm"><i class="fas fa-edit"></i> Editar</a>
+
+                                <a asp-controller="Producto" asp-action="Delete"
+                                   asp-route-id="@reg.IdProducto"
+                                   class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i> Borrar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No Existen Registros</p>
+        }
+        <div class="text-lg-center">
+            <h2>Elaborado por Aldair Villegas</h2>
+        </div>
+    </div>
+</div>

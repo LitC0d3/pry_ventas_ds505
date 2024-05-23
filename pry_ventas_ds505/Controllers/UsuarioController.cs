@@ -5,20 +5,19 @@ using System.Collections.Generic;
 
 namespace pry_ventas_ds505.Controllers
 {
-    public class CategoriaController : Controller
+    public class UsuarioController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public CategoriaController(ApplicationDbContext context)
+        public UsuarioController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<Categoria> listaCategorias = _context.Categoria;
-
-            return View(listaCategorias);
+            IEnumerable<Usuario> ListarUsuarios = _context.Usuario;
+            return View(ListarUsuarios);
         }
     }
 }
