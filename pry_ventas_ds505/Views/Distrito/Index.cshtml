@@ -1,0 +1,54 @@
+﻿@model IEnumerable<pry_ventas_ds505.Models.Distrito>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1><i class="fas fa-map-marker-alt"></i> Listado de Distritos</h1>
+
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <a class="btn btn-success" asp-controller="Distrito" asp-action="Create"><i class="fas fa-plus"></i> Agregar Distrito</a>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        @if (Model.Any())
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(distrito => distrito.IdDistrito)</th>
+                        <th>@Html.DisplayNameFor(distrito => distrito.Descripcion)</th>
+                        <th>@Html.DisplayNameFor(distrito => distrito.IdProvincia)</th>
+                        <th>@Html.DisplayNameFor(distrito => distrito.IdDepartamento)</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var distrito in Model)
+                    {
+                        <tr>
+                            <td>@distrito.IdDistrito</td>
+                            <td>@distrito.Descripcion</td>
+                            <td>@distrito.IdProvincia</td>
+                            <td>@distrito.IdDepartamento</td>
+                            <td>
+                                <a asp-controller="Distrito" asp-action="Edit" asp-route-id="@distrito.IdDistrito" class="btn btn-outline-warning btn-sm"><i class="fas fa-edit"></i> Editar</a>
+                                <a asp-controller="Distrito" asp-action="Delete" asp-route-id="@distrito.IdDistrito" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i> Borrar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No Existen Registros</p>
+        }
+    </div>
+</div>

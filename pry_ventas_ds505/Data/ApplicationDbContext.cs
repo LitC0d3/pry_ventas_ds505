@@ -13,5 +13,7 @@ namespace pry_ventas_ds505.Data
         public DbSet<Marca> Marcas { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Provincia> Provincias { get; set; }
+        public DbSet<Departamento> Departamentos { get; set; }
+        public DbSet<Distrito> Distritos { get; set; }
     }
 }
