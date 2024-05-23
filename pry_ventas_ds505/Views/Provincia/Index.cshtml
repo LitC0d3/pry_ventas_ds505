@@ -1,0 +1,55 @@
+﻿@model IEnumerable<pry_ventas_ds505.Models.Provincia>
+
+@{
+    ViewData["Title"] = "Listado de Provincias";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1><i class="fas fa-map-marker-alt"></i> Listado de Provincias</h1>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <a class="btn btn-success" asp-controller="Provincia" asp-action="Create"><i class="fas fa-plus"></i> Agregar Provincia</a>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        @if (Model.Any())
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID Provincia</th>
+                        <th>Descripción</th>
+                        <th>ID Departamento</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var provincia in Model)
+                    {
+                        <tr>
+                            <td>@provincia.IdProvincia</td>
+                            <td>@provincia.Descripcion</td>
+                            <td>@provincia.IdDepartamento</td>
+                            <td>
+                                <a asp-controller="Provincia" asp-action="Edit" asp-route-id="@provincia.IdProvincia" class="btn btn-outline-warning btn-sm"><i class="fas fa-edit"></i> Editar</a>
+                                <a asp-controller="Provincia" asp-action="Delete" asp-route-id="@provincia.IdProvincia" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i> Borrar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No existen provincias registradas.</p>
+        }
+        <div class="text-lg-center">
+            <h2>Elaborado por Aldair Villegas</h2>
+        </div>
+    </div>
+</div>
